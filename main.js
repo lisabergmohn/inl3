@@ -31,59 +31,59 @@ document.getElementById("add-item").addEventListener("click", () => {
 });
 
 //Uppgift 3
-var textNode = document.createTextNode("Radera text");
 var btn = document.createElement("button");
+btn.textContent = "Radera text";
 
-btn.appendChild(textNode);
-body.appendChild(btn);
+var addItem = document.getElementById("add-item");
+addItem.insertAdjacentElement("afterend", btn);
 
-btn.addEventListener("click", () => {
-  var lastElement = items.lastElementChild;
-  if(items.lastElementChild) {
-      items.lastElement.remove();
-  }
+var items = document.getElementById('items');
 
+btn.addEventListener("click", (event) => {
+  var removeItem = items.lastElementChild;
+  items.removeChild(removeItem);
 });
 
 //Uppgift 4
-var buttons = document.getElementsByClassName('remove-list-item');
+var buttons = document.getElementsByClassName("remove-list-item");
 
 for (var i = 0; i < buttons.length; i++) {
-  
-  buttons[i].addEventListener('click', function() {
-        if(confirm('Remove?'))
-        this.parentElement.remove();
-  })
-  
+  buttons[i].addEventListener("click", function () {
+    if (confirm("Remove?")) this.parentElement.remove();
+  });
 }
 
-
 //Uppgift 5 del 1
-var form = document.querySelector('form')
+var form = document.querySelector("form");
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault(); 
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    const firstname = this.elements.firstname.value;
-    const lastname = this.elements.lastname.value;
-    const age = parseInt(this.elements.age.value);
-    const email = this.elements.email.value;
-    const pet = this.elements.pet.value;
+  const firstname = this.elements.firstname.value;
+  const lastname = this.elements.lastname.value;
+  const age = parseInt(this.elements.age.value);
+  const email = this.elements.email.value;
+  const pet = this.elements.pet.value;
 
-    console.log(firstname);
-    console.log(lastname);
-    console.log(age);
-    console.log(email);
-    console.log(pet);
+  console.log(firstname);
+  console.log(lastname);
+  console.log(age);
+  console.log(email);
+  console.log(pet);
 
-    //Uppgift 5 del 2
-    if((firstname.length > 0 && firstname.length < 50) && (lastname.length > 0 && lastname.length < 50) && (!isNaN(age) && age > 0) && (email.length > 0 && email.length < 50) && (pet.length > 0)) {
-      e.target.submit();
-    } else {
-      alert('Fill out form');
-    }
+  //Uppgift 5 del 2
 
+if(firstname.length === 0 || firstname.length > 50 ) {
+  alert('Fill out form');
+} else if(lastname.length === 0 || lastname.length > 50 ) {
+  alert('Fill out form');
+} else if(isNaN(age) || age < 0 ) {
+  alert('Fill out form');
+} else if(email.length === 0 || email.length > 50) {
+  alert('Fill out form');
+} else if(pet.length === 0) {
+  alert('Choose a pet');
+} else {
+  e.target.submit();
+}
 });
-
-  
-
